@@ -1,0 +1,17 @@
+CREATE TABLE topics
+(
+    topic_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(500) NOT NULL
+);
+
+CREATE TABLE cards
+(
+    card_id INT AUTO_INCREMENT PRIMARY KEY,
+    front VARCHAR(700) NOT NULL,
+    back VARCHAR(700) NOT NULL,
+    topic_id INT NOT NULL,
+    CONSTRAINT fk_cards_topic
+        FOREIGN KEY (topic_id) REFERENCES topics (topic_id)
+        ON DELETE CASCADE,
+    INDEX (topic_id)  -- Adding index for performance
+);
